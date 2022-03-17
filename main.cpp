@@ -5,17 +5,15 @@
 
 
 using namespace std;
-typedef vector<vector<int>> matrix;
-
-
-matrix Smith(string a, string b, int n, int m, matrix H);
 
 struct path
 {
-  int direction;
+  string direction;
 };
 
+typedef vector<vector<int>> matrix;
 typedef vector<vector<path>> matrixpath;
+
 
 
 void show_matrix(vector<vector<int>> H, int n, int m){
@@ -30,21 +28,9 @@ void show_matrix(vector<vector<int>> H, int n, int m){
   cout << "" << endl;
 }
 
-void show_matrix_path(vector<vector<path>> H, int n, int m){
-  cout << "" << endl;
-  for(int i = 0; i < n; i++){
-    cout << " " << endl;
-    for(int j = 0; j < m; j++){
-      cout << H[i][j].direction << " ";
-    }
-  }
-  cout << "" << endl;
-  cout << "" << endl;
-}
 
 
-
-matrix Smith(string a, string b, int n, int m, matrix H, matrixpath path){
+matrix Smith(string a, string b, int n, int m, matrix H){
   int diagonal, deletion, insertion, w;
 
     for(int i = 1; i<=n; i++){
@@ -89,19 +75,49 @@ matrixpath Smithpath(string a, string b, int n, int m, matrix H, matrixpath path
 
           H[i][j] = max({0,diagonal,deletion,insertion});
           if(max({0,diagonal,deletion,insertion}) == diagonal){
-            path[i][j].direction = 1;//"diagonal";
+            path[i][j].direction = "diagonal";
           }
           if(max({0,diagonal,deletion,insertion}) == deletion){
-            path[i][j].direction = 2;//"deletion";
+            path[i][j].direction = "delation";
           }
           if(max({0,diagonal,deletion,insertion}) == insertion){
-            path[i][j].direction = 3;//"insertion";
+            path[i][j].direction = "insertion";
           }
             
         }
     }
     
     return path;
+}
+
+string subindo(string seq1, string seq2, string combination1, string combination2, int i, int j, matrix H, matrixpath path){
+  while((i!=0 || j!=0) && H[i][j]!=0){
+
+
+        if(path[i][j].direction=="insertion"){
+
+            combination1[ordem]='-';
+            combination2[ordem]=seq2[j];
+            j--;
+
+
+        }else  if(path[i][j].direction=="deletion"){
+
+            combination1[ordem]=seq1[i];
+            combination2[ordem]='-';
+            i--;
+
+        }else  if(path[i][j].direction=="diagonal"){
+
+            combination1[ordem]=seq1[i];
+            combination2[ordem]=seq2[j];
+            i--;
+            j--;
+
+
+        }
+  }
+  return combination1, combination2;
 }
 
 
@@ -135,12 +151,11 @@ int main(){
         path[e].resize(m+1);
     }
 
-    H = Smith(seq1,seq2,n,m,H,path);
+    H = Smith(seq1,seq2,n,m,H);
     path = Smithpath(seq1,seq2,n,m,H,path);
 
     cout << "Matrix after algorithm: ";
     show_matrix(H,n,m);
-    show_matrix_path(path,n,m);
 
 
     int top_H = 0;
@@ -158,6 +173,17 @@ int main(){
     }
 
     cout << "Highest value in H: " << top_H << endl;
+
+    int i=top_i;
+    int j=top_j;
+    int order=0;
+    string comb1;
+    string comb2;
+
+    comb1,comb2 = subindo(seq1,seq2,comb1,comb2, top_i, top_j, H, path, order);
+
+    
+
 
 
     return 0;
