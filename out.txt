@@ -1,0 +1,2 @@
+comb1: C----CCG
+comb2: CG-C-C-G

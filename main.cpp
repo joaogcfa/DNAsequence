@@ -17,36 +17,6 @@ struct retVals
 typedef vector<vector<int>> matrix;
 typedef vector<vector<path>> matrixpath;
 
-void show_matrix(vector<vector<int>> H, int n, int m)
-{
-  cout << "" << endl;
-  for (int i = 0; i < n; i++)
-  {
-    cout << " " << endl;
-    for (int j = 0; j < m; j++)
-    {
-      cout << H[i][j] << " ";
-    }
-  }
-  cout << "" << endl;
-  cout << "" << endl;
-}
-
-void show_matrixpath(vector<vector<path>> H, int n, int m)
-{
-  cout << "" << endl;
-  for (int i = 0; i < n; i++)
-  {
-    cout << " " << endl;
-    for (int j = 0; j < m; j++)
-    {
-      cout << H[i][j].direction << " ";
-    }
-  }
-  cout << "" << endl;
-  cout << "" << endl;
-}
-
 matrix Smith(string a, string b, int n, int m, matrix H)
 {
   int diagonal, deletion, insertion, w;
@@ -160,6 +130,8 @@ int main()
 
   cin >> n;
   cin >> m;
+  n++; // Adicionando caracter especial
+  m++; // Adicionando caracter especial
 
   cin >> seq1;
   cin >> seq2;
@@ -179,15 +151,12 @@ int main()
 
   H = Smith(seq1, seq2, n, m, H);
   path = Smithpath(seq1, seq2, n, m, H, path);
-  // show_matrixpath(path, n, m);
-
-  cout << "Matrix after algorithm: ";
-  show_matrix(H, n, m);
 
   int top_H = 0;
   int top_j = 0;
   int top_i = 0;
 
+  // Pegando maior valor
   for (int i = 1; i < n; i++)
   {
     for (int j = 1; j < m; j++)
@@ -200,8 +169,6 @@ int main()
       }
     }
   }
-
-  cout << "Highest value in H: " << top_H << endl;
 
   string comb1;
   string comb2;
