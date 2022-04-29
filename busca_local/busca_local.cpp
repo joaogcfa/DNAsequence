@@ -71,7 +71,7 @@ int main()
   cin >> seq1;
   cin >> seq2;
 
-  for (int z = 0; z < 100; z++)
+  for (int z = 0; z < 10; z++)
   {
 
     if (n > m)

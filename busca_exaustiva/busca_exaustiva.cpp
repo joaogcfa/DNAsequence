@@ -87,37 +87,35 @@ int main()
       sub1.insert(0, 1, '-');
       sub2.insert(0, 1, '-');
 
-      cout << "sub1: " << sub1 << endl
-           << "sub2: " << sub2 << endl;
-
       int size_sub1 = sub1.size();
       int size_sub2 = sub2.size();
 
-      // calcula o sw
+      H.resize(size_sub1 + 1);
+      for (int e = 0; e <= size_sub1; e++)
+      {
+        H[e].resize(size_sub2 + 1);
+      }
+
       H = high_score(sub1, sub2, size_sub1, size_sub2, H);
 
-      // // descobrindo os maiores scores
-      // for (int i = 1; i <= size_sub1; i++)
-      // {
-      //   for (int j = 1; j <= size_sub2; j++)
-      //   {
-      //     if (H[i][j] > max)
-      //     {
-      //       max = H[i][j];
-      //       seq1Def = sub1;
-      //       seq2Def = sub2;
-      //     }
-      //   }
-      // }
+      for (int i = 1; i <= size_sub1; i++)
+      {
+        for (int j = 1; j <= size_sub2; j++)
+        {
+          if (H[i][j] > max)
+          {
+            max = H[i][j];
+            seq1Def = sub1;
+            seq2Def = sub2;
+          }
+        }
+      }
     }
   }
-
-  //     cout << "Score maximo: " << max << endl;
-  //     cout << "Primeira sequencia utilizada: " << seqA_utilizada << endl;
-  //     cout << "Segunda sequencia utilizada: " << seqB_utilizada << endl;
-
-  //     return 0;
-  // }
+  cout << endl;
+  cout << "Score Maximo: " << max << endl;
+  cout << "Sub Seq1 Best: " << seq1Def.substr(1, sizeof(seq1Def)) << endl;
+  cout << "Sub Seq2 Best: " << seq2Def.substr(1, sizeof(seq2Def)) << endl;
 
   return 0;
 }
