@@ -1,0 +1,8 @@
+seq1 size: 50
+seq2 size: 60
+seq1 is: --T--GGA-AAA---GAGGTGGACTCGTG-C-TTGT-TA-T-GT-TCGAG
+seq2 is: GA-ATCCTT-C-GA-CAGA-CATGTGTA-GGA-GTGCATGGG--AAG-A-TTA-ATTAG-
+
+Score Maximo: 14
+Sub Seq1 Best: AGG
+Sub Seq2 Best: GGG
