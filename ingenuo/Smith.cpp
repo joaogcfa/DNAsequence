@@ -181,7 +181,8 @@ int main()
     reverse(palavra.str1.begin(), palavra.str1.end());
     reverse(palavra.str2.begin(), palavra.str2.end());
     cout << "comb1: " << palavra.str1 << endl
-         << "comb2: " << palavra.str2 << endl;
+         << "comb2: " << palavra.str2 << endl
+         << "score: " << top_H << endl;
 
     return 0;
 }
