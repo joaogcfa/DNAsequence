@@ -51,6 +51,21 @@ matrix high_score(string a, string b, int n, int m, matrix H)
   return H;
 }
 
+void show_matrix(vector<vector<int>> H, int n, int m)
+{
+  cout << "" << endl;
+  for (int i = 0; i < n; i++)
+  {
+    cout << " " << endl;
+    for (int j = 0; j < m; j++)
+    {
+      cout << H[i][j] << " ";
+    }
+  }
+  cout << "" << endl;
+  cout << "" << endl;
+}
+
 int main()
 {
 
@@ -76,42 +91,44 @@ int main()
   subs1 = subGenerator(n, seq1);
   subs2 = subGenerator(m, seq2);
 
-  for (int i = 0; i < int(subs1.size()); i++)
+  // for (int i = 0; i < int(subs1.size()); i++)
+  // {
+  //   for (int j = 0; j < int(subs2.size()); j++)
+  //   {
+
+  string sub1 = seq1;
+  string sub2 = seq2;
+
+  sub1.insert(0, 1, '-');
+  sub2.insert(0, 1, '-');
+
+  int size_sub1 = sub1.size();
+  int size_sub2 = sub2.size();
+
+  H.resize(size_sub1 + 1);
+  for (int e = 0; e <= size_sub1; e++)
   {
-    for (int j = 0; j < int(subs2.size()); j++)
+    H[e].resize(size_sub2 + 1);
+  }
+
+  H = high_score(sub1, sub2, size_sub1, size_sub2, H);
+
+  show_matrix(H, size_sub1, size_sub2);
+
+  for (int i = 1; i <= size_sub1; i++)
+  {
+    for (int j = 1; j <= size_sub2; j++)
     {
-
-      string sub1 = subs1[i];
-      string sub2 = subs2[j];
-
-      sub1.insert(0, 1, '-');
-      sub2.insert(0, 1, '-');
-
-      int size_sub1 = sub1.size();
-      int size_sub2 = sub2.size();
-
-      H.resize(size_sub1 + 1);
-      for (int e = 0; e <= size_sub1; e++)
+      if (H[i][j] > max)
       {
-        H[e].resize(size_sub2 + 1);
-      }
-
-      H = high_score(sub1, sub2, size_sub1, size_sub2, H);
-
-      for (int i = 1; i <= size_sub1; i++)
-      {
-        for (int j = 1; j <= size_sub2; j++)
-        {
-          if (H[i][j] > max)
-          {
-            max = H[i][j];
-            seq1Def = sub1;
-            seq2Def = sub2;
-          }
-        }
+        max = H[i][j];
+        seq1Def = sub1;
+        seq2Def = sub2;
       }
     }
   }
+  // }
+  // }
   cout << endl;
   cout << "Score Maximo: " << max << endl;
   cout << "Sub Seq1 Best: " << seq1Def.substr(1, sizeof(seq1Def)) << endl;
