@@ -29,10 +29,10 @@ struct calculo
     __host__ __device__
 
         int
-        operator()(const int &i)
+        operator()(const int &i, const int &j)
     {
         int w;
-        if (vA[i] == vB[i])
+        if (vA[i] == vB[j])
         {
 
             w = 2;
@@ -80,7 +80,7 @@ int main()
     thrust::device_vector<char> vA(seq1.begin(), seq1.end());
     thrust::device_vector<char> vB(seq2.begin(), seq2.end());
 
-    thrust::device_vector<int> ponto;
+    thrust::device_vector<int> ponto(10);
 
     cout << "seq1 size: " << n << endl;
     cout << "seq2 size: " << m << endl;
@@ -101,17 +101,21 @@ int main()
                     sizeSubB = endB - beginB;
                     if (sizeSubA == sizeSubB && beginB + sizeSubA < vB.size())
                     {
-                        cout << "i: " << beginA << endl;
-                        cout << "h: " << endA << endl
+                        cout << "beginA: " << beginA << endl;
+                        cout << "endA: " << endA << endl
                              << endl;
                         cout << "beginB: " << beginB << endl;
-                        cout << "L: " << endB << endl
+                        cout << "endB: " << endB << endl
                              << endl;
                         thrust::transform(vA.begin() + beginA, vA.begin() + endA, vB.begin() + beginB, ponto.begin(), calculo(vA.data(), vB.data()));
+                        for (int x = 0; x < ponto.size(); x++)
+                        {
+                            cout << "ponto: " << ponto[x] << endl;
+                        }
+                        endA++;
                     }
                     endB++;
                 }
-                endA++;
             }
         }
     }
