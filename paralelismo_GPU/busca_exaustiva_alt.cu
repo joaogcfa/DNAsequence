@@ -81,14 +81,7 @@ int main()
         tam = seq2.size();
     }
 
-    cout << tam << endl;
-
     thrust::device_vector<int> ponto(tam);
-
-    for (int x = 0; x < ponto.size(); x++)
-    {
-        cout << "ponto: " << ponto[x] << endl;
-    }
 
     thrust::fill(ponto.begin(), ponto.end(), 0);
 
@@ -120,16 +113,12 @@ int main()
                         // cout << "endB: " << endB << endl
                         //      << endl;
                         thrust::transform(vA.begin() + beginA, vA.begin() + endA, vB.begin() + beginB, ponto.begin(), calculo(vA.data(), vB.data()));
-                        for (int x = 0; x < ponto.size(); x++)
-                        {
-                            cout << "ponto: " << ponto[x] << endl;
-                        }
                     }
                 }
             }
         }
     }
-
-    // cout << "Score Maximo: " << score << endl;
+    score = thrust::reduce(ponto.begin(), ponto.end(), 0, thrust::maximum<int>());
+    cout << "Score Maximo: " << score << endl;
     return 0;
 }

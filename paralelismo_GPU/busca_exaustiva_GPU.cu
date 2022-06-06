@@ -102,7 +102,7 @@ vector<string> subGenerator(int size, string seq)
 int main()
 {
 
-  int N, M,n,m, score,maxlc, max = 0;
+  int N, M, n, m, score, maxlc, max = 0;
   string S, T, seq1, seq2;
   vector<string> subs1, subs2;
   matrix H;
@@ -130,7 +130,6 @@ int main()
 
       string S = subs1[i];
       string T = subs2[j];
-
 
       N = S.size();
       M = T.size();
@@ -161,12 +160,10 @@ int main()
         {
           maxlc = score;
           if (maxlc > max)
-          max = maxlc;
+            max = maxlc;
         }
-        cout << endl;
       }
     }
-    cout << "*" << endl;
   }
   cout << "Score Maximo: " << max << endl;
   return 0;
