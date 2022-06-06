@@ -33,10 +33,7 @@ struct calculo
     {
         int w = -1;
         if (vA[i] == vB[j])
-        {
             w = 2;
-        }
-
         return w;
     }
 };
@@ -66,7 +63,7 @@ struct calculo
 int main()
 {
 
-    int n, m, max, endA, endB, sizeSubA, sizeSubB, tam;
+    int n, m, score, endA, endB, sizeSubA, sizeSubB, tam;
     string seq1, seq2;
 
     cin >> n >> m;
@@ -84,7 +81,16 @@ int main()
         tam = seq2.size();
     }
 
+    cout << tam << endl;
+
     thrust::device_vector<int> ponto(tam);
+
+    for (int x = 0; x < ponto.size(); x++)
+    {
+        cout << "ponto: " << ponto[x] << endl;
+    }
+
+    thrust::fill(ponto.begin(), ponto.end(), 0);
 
     cout << "seq1 size: " << n << endl;
     cout << "seq2 size: " << m << endl;
@@ -99,35 +105,31 @@ int main()
             while (endA < vA.size())
             {
                 endB = beginB;
-                sizeSubA = endA - beginA;
                 endA++;
+                sizeSubA = endA - beginA;
                 while (endB < vB.size())
                 {
+                    endB++;
                     sizeSubB = endB - beginB;
                     if (sizeSubA == sizeSubB && beginB + sizeSubA < vB.size())
                     {
-                        int l = 0;
                         // cout << "beginA: " << beginA << endl;
                         // cout << "endA: " << endA << endl
                         //      << endl;
                         // cout << "beginB: " << beginB << endl;
                         // cout << "endB: " << endB << endl
                         //      << endl;
-                        thrust::transform(vA.begin() + beginA, vA.begin() + endA, vB.begin() + beginB, ponto.begin() + l, calculo(vA.data(), vB.data()));
-                        l++;
-                        // for (int x = 0; x < ponto.size(); x++)
-                        // {
-                        //     cout << "ponto: " << ponto[x] << endl;
-                        // }
+                        thrust::transform(vA.begin() + beginA, vA.begin() + endA, vB.begin() + beginB, ponto.begin(), calculo(vA.data(), vB.data()));
+                        for (int x = 0; x < ponto.size(); x++)
+                        {
+                            cout << "ponto: " << ponto[x] << endl;
+                        }
                     }
-                    endB++;
                 }
             }
         }
     }
-    max = 0;
 
-    cout
-        << "Score Maximo: " << max << endl;
+    // cout << "Score Maximo: " << score << endl;
     return 0;
 }
