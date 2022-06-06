@@ -1,6 +1,6 @@
 import random
-n = 100 # tamanho da primeira sequência
-m = 100 # tamanho da segunda sequência
+n = 10 # tamanho da primeira sequência
+m = 15 # tamanho da segunda sequência
 file = 'dna.seq' # nome do arquivo a ser gerado
 f = open(file, 'w')
 seq=[str(n)+'\n',
