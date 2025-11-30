@@ -35,7 +35,7 @@ cd DNAsequence
 
 The main Jupyter Notebooks provided for running and exploring DNA sequence comparison are:
 
-- [`Final Report.ipynb`](https://github.com/joaogcfa/DNAsequence/blob/main/Final_Report.ipynb): This is the principal notebook containing the final report and demonstration of the methodology and results. **Recommended as the main entry point for analysis and experiments.**
+- [`Final Report.ipynb`](https://github.com/joaogcfa/DNAsequence/blob/main/Final%20Report.ipynb): This is the principal notebook containing the final report and demonstration of the methodology and results. **Recommended as the main entry point for analysis and experiments.**
 - [`Relatorio_Final_col.ipynb`](https://github.com/joaogcfa/DNAsequence/blob/main/Relatorio_Final_col.ipynb): A variant for Google Colab users, enabling cloud-based execution of the analysis pipeline in a Colab environment.
 - [`Relatorio Final.ipynb`](https://github.com/joaogcfa/DNAsequence/blob/main/Relatorio%20Final.ipynb): Another version of the final report; for most users, refer to `Relatorio_Final.ipynb` unless you need this specific variant.
 
